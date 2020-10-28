@@ -10,7 +10,7 @@ class MyApp3 extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StoreHomePage(title: 'App3 Tab Controls with ScopedModel'),
+      home: StoreHomePage(title: 'Coffee Shop'),
     );
   }
 }
