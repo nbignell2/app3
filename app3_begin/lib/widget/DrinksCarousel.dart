@@ -1,7 +1,6 @@
 import 'package:coffee_store_app/widget/DrinksCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 class DrinksCarousel extends StatefulWidget {
   @override
@@ -13,7 +12,6 @@ class DrinksCarousel extends StatefulWidget {
 class DrinksCarouselState extends State<DrinksCarousel>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-
 
   @override
   void initState() {
@@ -51,10 +49,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
         ),
         child: Stack(
           children: <Widget>[
-            ScopedModelDescendant<MyModel>(
-              rebuildOnChange: false,
-              builder: (context, child, myModel) {
-                return TabBarView(
+            TabBarView(
               controller: _tabController,
               children: mainTypes.map((drinkType) {
                 return DrinksCard(
