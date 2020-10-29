@@ -8,7 +8,7 @@ class DrinkModel extends Model {
 
   List<DrinkType> get drinkType => _drinkType;
 
-  void updateDrinksList(List<DrinkType> type) {
+  set chosenDrink(List<DrinkType> type) {
     _drinkType = type;
     notifyListeners();
   }

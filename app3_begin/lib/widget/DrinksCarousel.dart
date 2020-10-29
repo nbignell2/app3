@@ -1,6 +1,8 @@
+import 'package:coffee_store_app/model/DrinkModel.dart';
 import 'package:coffee_store_app/widget/DrinksCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class DrinksCarousel extends StatefulWidget {
   @override
@@ -23,7 +25,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
     _tabController.dispose();
   }
 
-  void _changeImage({int delta, bool userInput = false}) {
+  void _changeImage({int delta}) {
     var newTabIndex = _tabController.index + delta;
     if (newTabIndex >= coffeeTypes.length) {
       newTabIndex = 0;
@@ -47,13 +49,40 @@ class DrinksCarouselState extends State<DrinksCarousel>
         ),
         child: Stack(
           children: <Widget>[
-            TabBarView(
-              controller: _tabController,
-              children: mainTypes.map((drinkType) {
-                return DrinksCard(
-                  drinkType: drinkType,
+            ScopedModelDescendant<DrinkModel>(
+              rebuildOnChange: false,
+              builder: (context, child, model) {
+                return TabBarView(
+                  controller: _tabController,
+                  children: mainTypes.map((drinkType) {
+                    return GestureDetector(
+                      onTap: () {
+                        var type;
+                        switch (drinkType.title) {
+                          case 'Coffee':
+                            type = coffeeTypes;
+                            break;
+                          case 'Tea':
+                            type = teaTypes;
+                            break;
+                          case 'Juice':
+                            type = juiceTypes;
+                            break;
+                          case 'Smoothie':
+                            type = smoothieTypes;
+                            break;
+                          default:
+                            throw '${drinkType.title} type not recognized';
+                        }
+                        model.chosenDrink = type;
+                      },
+                      child: DrinksCard(
+                        drinkType: drinkType,
+                      ),
+                    );
+                  }).toList(),
                 );
-              }).toList(),
+              },
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -75,7 +104,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
                   size: 36.0,
                 ),
                 onPressed: () {
-                  _changeImage(delta: -1, userInput: true);
+                  _changeImage(delta: -1);
                 },
               ),
             ),
@@ -88,7 +117,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
                   size: 36.0,
                 ),
                 onPressed: () {
-                  _changeImage(delta: 1, userInput: true);
+                  _changeImage(delta: 1);
                 },
               ),
             ),
