@@ -52,7 +52,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
           children: <Widget>[
             ScopedModelDescendant<DrinkModel>(
               rebuildOnChange: false,
-              builder: (context, child, model) {
+              builder: (context, child, drinkModel) {
                 return TabBarView(
                   controller: _tabController,
                   children: mainTypes.map((drinkType) {
@@ -75,7 +75,7 @@ class DrinksCarouselState extends State<DrinksCarousel>
                           default:
                             throw '${drinkType.title} type not recognized';
                         }
-                        model.chosenDrink = type;
+                        drinkModel.chosenDrink = type;
                       },
                       child: DrinksCard(
                         drinkType: drinkType,

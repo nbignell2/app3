@@ -18,7 +18,7 @@ class DrinksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<DrinkModel>(
-      builder: (context, child, model) {
+      builder: (context, child, drinkModel) {
         return Expanded(
           //GridView children must be a list of widgets.
           child: GridView.count(
