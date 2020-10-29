@@ -4,9 +4,7 @@ import 'package:flutter/rendering.dart';
 
 class DrinksCarousel extends StatefulWidget {
   @override
-  DrinksCarouselState createState() {
-    return new DrinksCarouselState();
-  }
+  DrinksCarouselState createState() => DrinksCarouselState();
 }
 
 class DrinksCarouselState extends State<DrinksCarousel>
