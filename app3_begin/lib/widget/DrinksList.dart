@@ -1,7 +1,18 @@
-import 'package:coffee_store_app/model/DrinkModel.dart';
+import 'package:coffee_store_app/model/DrinkType.dart';
 import 'package:coffee_store_app/widget/DrinksCard.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+
+class DrinkModel extends Model {
+  List<DrinkType> _drinkType = coffeeTypes;
+
+  List<DrinkType> get drinkType => _drinkType;
+
+  set chosenDrink(List<DrinkType> type) {
+    _drinkType = type;
+    notifyListeners();
+  }
+}
 
 class DrinksList extends StatelessWidget {
   @override

@@ -1,8 +1,9 @@
-import 'package:coffee_store_app/model/DrinkModel.dart';
 import 'package:coffee_store_app/widget/DrinksCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:scoped_model/scoped_model.dart';
+
+import 'DrinksList.dart';
 
 class DrinksCarousel extends StatefulWidget {
   @override
