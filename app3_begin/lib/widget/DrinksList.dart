@@ -31,7 +31,7 @@ class DrinksList extends StatelessWidget {
             //object data.
             //We use the List.map().toList()
             //method calls from the List class to do this.
-            children: coffeeTypes.map((e) {
+            children: drinkModel.drinkType.map((e) {
               return DrinksCard(
                 drinkType: e,
               );
