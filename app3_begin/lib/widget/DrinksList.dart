@@ -32,8 +32,95 @@ class DrinksList extends StatelessWidget {
             //We use the List.map().toList()
             //method calls from the List class to do this.
             children: drinkModel.drinkType.map((e) {
-              return DrinksCard(
-                drinkType: e,
+              return GestureDetector(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext dialogContext) {
+                        return AlertDialog(
+                          title: Text(
+                            'Order',
+                          ),
+                          content: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.lime,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Image.asset(
+                                  e.image,
+                                  height: 100.0,
+                                  width: 100.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        e.title,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Price: \$${e.price}',
+                                        key: Key('${e.title}_order'),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(dialogContext);
+                              },
+                            ),
+                            FlatButton(
+                              child: Text(
+                                'Send Order',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(dialogContext);
+                                final snackBar = SnackBar(
+                                  backgroundColor: Colors.white,
+                                  duration: Duration(
+                                    seconds: 2,
+                                  ),
+                                  content: Text(
+                                    '${e.title} order confirmed',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                );
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                },
+                child: DrinksCard(
+                  drinkType: e,
+                ),
               );
             }).toList(),
           ),
