@@ -52,7 +52,7 @@ class DrinksList extends StatelessWidget {
                                   e.image,
                                   height: 100.0,
                                   width: 100.0,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.fill,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
